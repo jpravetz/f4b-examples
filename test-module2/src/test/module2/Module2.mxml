@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module 
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/halo"
+	xmlns:spicefactory="http://www.spicefactory.org/parsley/flex"
+	xmlns:parsley="http://www.spicefactory.org/parsley/flex"
+	xmlns:module2="test.module2.*"
+	layout="vertical" width="100%"
+	preinitialize="FlexContextBuilder.build(Module2Context,this)"
+	>
+
+	<fx:Script>
+		<![CDATA[
+			import org.spicefactory.parsley.flex.FlexContextBuilder;
+		]]>
+	</fx:Script>
+	
+	<module2:Module2Panel width="100%" />
+	
+	
+</mx:Module> 

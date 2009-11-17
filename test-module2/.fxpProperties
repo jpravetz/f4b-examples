@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fxpProperties abbreviated="false" authoringTool="Flex Builder" compiles="true" parentProject="6d93d568-c8d4-4f86-81ff-61696237823a" projectUUID="6d93d568-c8d4-4f86-81ff-61696237823a" sdkVersion="4.0.0" uuid="746268b3-6fb2-4916-abb2-e9a2f60f302f" version="3">
+  <projects/>
+  <src/>
+  <swc>
+    <linked location="sdkPlaceHolder" path="sdkPlaceHolder" position="0" uuid="746268b3-6fb2-4916-abb2-e9a2f60f302f"/>
+    <linked location="/libs" path="\libs" position="1" uuid="746268b3-6fb2-4916-abb2-e9a2f60f302f"/>
+    <linked location="${DOCUMENTS}/Libraries/parsley-2.1.0/release/parsley-complete-flex4-2.1.0.swc" path="${DOCUMENTS}/Libraries/parsley-2.1.0/release/parsley-complete-flex4-2.1.0.swc" position="2" uuid="746268b3-6fb2-4916-abb2-e9a2f60f302f"/>
+    <linked location="${DOCUMENTS}/Libraries/parsley-2.1.0/release/spicelib-complete-flex-2.1.0.swc" path="${DOCUMENTS}/Libraries/parsley-2.1.0/release/spicelib-complete-flex-2.1.0.swc" position="3" uuid="746268b3-6fb2-4916-abb2-e9a2f60f302f"/>
+    <linked location="${DOCUMENTS}/test-api/bin/test-api.swc" path="${DOCUMENTS}/test-api/bin/test-api.swc" position="4" uuid="746268b3-6fb2-4916-abb2-e9a2f60f302f"/>
+  </swc>
+  <misc/>
+  <theme/>
+</fxpProperties>

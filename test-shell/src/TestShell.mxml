@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					   xmlns:s="library://ns.adobe.com/flex/spark" 
+					   xmlns:mx="library://ns.adobe.com/flex/halo"
+					   xmlns:spicefactory="http://www.spicefactory.org/parsley/flex"
+					   xmlns:shell="test.shell"
+					   minWidth="512" minHeight="768"
+					   preinitialize="FlexContextBuilder.build(TestShellContext,this)"
+					   creationComplete="application1_creationCompleteHandler(event)"
+					   addedToStage="dispatchEvent(new Event('configureView', true));"
+					   xmlns:app="test.shell.*">
+	
+	<s:layout>
+		<s:VerticalLayout paddingTop="10" paddingLeft="10"  />
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[			
+			import mx.events.FlexEvent;
+			import mx.events.ModuleEvent;
+			
+			import org.spicefactory.parsley.core.context.Context;
+			import org.spicefactory.parsley.flex.FlexContextBuilder;
+			
+			import test.shell.Module3Window;
+						
+			[Inject] public var context:Context;
+						
+			protected function application1_creationCompleteHandler(event:FlexEvent):void {
+				module1Loader.loadModule( "test/module1/Module1.swf" );
+				// module1Loader.addEventListener(ModuleEvent.READY,onModuleReady);
+				module2Loader.loadModule( "assets/modules/Module2.swf" );
+			}
+			
+			private function onModuleReady(event:ModuleEvent):void {
+				module1Loader.percentWidth = 50;
+			}
+			
+			private function onModule3Button():void {
+				var window:Module3Window = new Module3Window();
+				context.viewManager.addViewRoot(window);
+				window.open();
+
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Button label="Open Module3 Window" click="onModule3Button()" />
+
+	<s:HGroup width="100%" >
+		<app:ShellPanel id="mainApp"  width="50%"/>
+		<app:DataMonitor width="50%" height="{mainApp.height}"/>
+	</s:HGroup>
+	
+	<s:HGroup width="100%" >
+	<mx:ModuleLoader id="module1Loader" width="50%" />
+	<mx:ModuleLoader id="module2Loader" width="50%" />
+	</s:HGroup>
+	
+	
+	
+</s:WindowedApplication>

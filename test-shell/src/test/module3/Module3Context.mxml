@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Object
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns="http://www.spicefactory.org/parsley"
+	xmlns:mod3="test.module3.*"
+	>
+	
+	<mod3:Module3PanelPM />
+	
+</mx:Object> 

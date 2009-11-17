@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/halo"
+		 addedToStage="dispatchEvent(new Event('configureIOC', true))"
+		 title="Module #2 Panel"
+		 >
+	
+	<s:layout>
+		<s:VerticalLayout paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10" />
+	</s:layout>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[		
+			[Inject] [Bindable] public var model:Module2PanelPM;
+			//public var model:Object;
+		]]>
+	</fx:Script>
+	
+	<s:Label text="Received Message:" />
+	<s:TextArea id="textArea" width="100%" height="45"
+				text="{model.textReceive}"
+				/>
+	
+	<s:Label text="Compose Message:" />
+	<s:TextArea id="messageText" width="100%" height="45" 
+				change="model.textSend=messageText.text"/>
+	<s:HGroup width="100%" >
+		<s:Button click="model.sendMessage()" label="Send Message" />
+	</s:HGroup>
+	
+</s:Panel>
