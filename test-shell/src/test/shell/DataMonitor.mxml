@@ -6,7 +6,7 @@
 		 addedToStage="dispatchEvent(new Event('configureIOC', true))"
 		 >
 	
-	<!-- We dispatch a configureIOC event to tell the IOC framework to do injections. -->
+	<!-- We dispatch a configureIOC event to tell the IOC framework that we exist and to do injections. -->
 	
 	<s:layout>
 		<s:VerticalLayout paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10" />
