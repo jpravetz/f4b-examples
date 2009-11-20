@@ -12,13 +12,30 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.events.ModuleEvent;
 			private function init():void {
+				currentState = "loading";
+				module3Module.addEventListener(ModuleEvent.READY,onModuleReady);
 				module3Module.loadModule("test/module3/Module3Module.swf");
 			}
 
+			private function onModuleReady(event:ModuleEvent):void {
+				module3Module.removeEventListener(ModuleEvent.READY,onModuleReady);
+				currentState = "loaded";
+			}
 		]]>
 	</fx:Script>
 	
+	
+	<s:states  >
+		<s:State name="loading" />
+		<s:State name="loaded" />
+	</s:states>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" excludeFrom="loaded">
+		<s:HGroup height="100%" verticalAlign="middle" >
+			<s:Label text="Loading..." color="0xCCCCCC" />
+		</s:HGroup>
+	</s:VGroup>
 	
 	<mx:ModuleLoader id="module3Module" width="100%" height="100%" />
 	

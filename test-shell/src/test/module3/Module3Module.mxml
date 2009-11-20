@@ -9,6 +9,13 @@
 	layout="vertical" width="100%"
 	preinitialize="FlexContextBuilder.build(Module3Context,this)"
 	>
+	
+	<!--
+	You cannot inject into this component because you cannot dispatch
+	a configureIOC event from this component. The advise is to move
+	your subcomponents into a separate component file, as has been done here
+	with Module3Panel.
+	-->
 
 	<fx:Script>
 		<![CDATA[
