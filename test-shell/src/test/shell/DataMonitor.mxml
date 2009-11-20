@@ -3,26 +3,40 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/halo"
 		 title="Message Monitor Panel"
+		 addedToStage="dispatchEvent(new Event('configureIOC', true))"
 		 >
+	
+	<!-- We dispatch a configureIOC event to tell the IOC framework to do injections. -->
+	
 	<s:layout>
 		<s:VerticalLayout paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10" />
 	</s:layout>
-	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
-	</fx:Declarations>
 	
 	<fx:Script>
 		<![CDATA[
-			import test.common.ModelLocator;
-			import test.common.TestEvent;
-			[Bindable] private var model:ModelLocator = ModelLocator.getInstance();
+			import org.spicefactory.lib.logging.LogContext;
+			import org.spicefactory.lib.logging.Logger;
 			
+			import test.common.GlobalData;
+			import test.common.TestEvent;
+			
+			private static const log:Logger = LogContext.getLogger(DataMonitor);
+			
+			// Global data is in an object that is instantiated and maintained
+			// by the IOC Framework (context).  
+			[Inject] [Bindable] public var model:GlobalData;
+			
+			/**
+			 * This is the handler that adds received messages to our GlobalData.
+			 * XXX For some reason this is receiving two events when only one is sent?
+			 */
 			[MessageHandler]
 			public function onMessage( event : TestEvent) : void {
 				var text:String = "";
 				if( event.sender != null )
 					text += event.sender + ": ";
 				text += event.message;
+				log.debug( "Message handler, message = '{0}'", text );
 				model.items.addItem( text );
 			}
 		]]>

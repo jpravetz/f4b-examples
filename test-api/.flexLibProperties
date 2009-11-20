@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" version="3">
   <includeClasses>
-    <classEntry path="test.common.ModelLocator"/>
+    <classEntry path="test.common.GlobalData"/>
     <classEntry path="test.common.TestEvent"/>
   </includeClasses>
   <includeResources/>

@@ -2,10 +2,20 @@
 <mx:Object
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns="http://www.spicefactory.org/parsley"
-	xmlns:myshell="test.shell.*">
+	xmlns:myshell="test.shell.*"
+	xmlns:common="test.common.*"
+	>
 	
+	<!-- Managed by IOC framework because it is injected, it dispatches managed messages, and because it receives an injection -->
 	<myshell:ShellPanelPM />
+	
+	<!-- Managed by ICO framework because it handles messages, and because it receives an injection. -->
 	<myshell:DataMonitor />
 	
+	<!-- 
+	Instantiate a single instance of our shared global data object. 
+	Initalize count to 5, just to show that we can. 
+	-->
+	<common:GlobalData count="5" />
 	
 </mx:Object> 

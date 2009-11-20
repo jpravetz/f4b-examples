@@ -5,10 +5,16 @@
 					   xmlns:spicefactory="http://www.spicefactory.org/parsley/flex"
 					   xmlns:shell="test.shell"
 					   minWidth="512" minHeight="768"
-					   preinitialize="FlexContextBuilder.build(TestShellContext,this)"
-					   creationComplete="application1_creationCompleteHandler(event)"
+					   preinitialize="initLogging();FlexContextBuilder.build(TestShellContext,this)"
+					   creationComplete="creationCompleteHandler(event)"
 					   addedToStage="dispatchEvent(new Event('configureView', true));"
 					   xmlns:app="test.shell.*">
+	
+	<!-- Notes:
+		XXX: Not sure why this is dispatching a configureView event rather then an configureIOC event.
+		XXX: Not sure if this is the best event to configure logging on. Is there a prettier way?
+		Todo: I would like to add a configuration from XML that allows logging to be set to a filename.
+	-->
 	
 	<s:layout>
 		<s:VerticalLayout paddingTop="10" paddingLeft="10"  />
@@ -18,7 +24,12 @@
 		<![CDATA[			
 			import mx.events.FlexEvent;
 			import mx.events.ModuleEvent;
+			import mx.logging.Log;
+			import mx.logging.LogEventLevel;
+			import mx.logging.targets.TraceTarget;
 			
+			import org.spicefactory.lib.logging.LogContext;
+			import org.spicefactory.lib.logging.Logger;
 			import org.spicefactory.parsley.core.context.Context;
 			import org.spicefactory.parsley.flex.FlexContextBuilder;
 			
@@ -26,22 +37,49 @@
 						
 			[Inject] public var context:Context;
 						
-			protected function application1_creationCompleteHandler(event:FlexEvent):void {
+			protected function creationCompleteHandler(event:FlexEvent):void {
 				module1Loader.loadModule( "test/module1/Module1.swf" );
-				// module1Loader.addEventListener(ModuleEvent.READY,onModuleReady);
 				module2Loader.loadModule( "assets/modules/Module2.swf" );
-			}
-			
-			private function onModuleReady(event:ModuleEvent):void {
-				module1Loader.percentWidth = 50;
 			}
 			
 			private function onModule3Button():void {
 				var window:Module3Window = new Module3Window();
 				context.viewManager.addViewRoot(window);
 				window.open();
-
 			}
+			
+			/**
+			 * Initialize logging for the application. 
+			 * This needs to be done before everything else, else log messages won't be recorded.
+			 * Classes that wish to log messages should call:
+			 *	private static const log:Logger = LogContext.getLogger(MyClass);
+			 *	log.info("Number {0}, {1}", 1, 2 );
+			 * NOTE: Is this really the optimal way to set up logging, and on the correct event?.
+			 */
+			private function initLogging():void {
+				// Create target
+				var logTarget:TraceTarget = new TraceTarget();
+				
+				// Log all levels
+				logTarget.level = LogEventLevel.ALL;
+				
+				// Add date, time, category and log level to the output
+				logTarget.includeTime = true;
+				logTarget.includeLevel = true;
+				// logTarget.includeDate = true;
+				logTarget.includeCategory = true;
+				
+				// Begin logging
+				Log.addTarget(logTarget);
+				
+				//_log = Log.getLogger("CanmoreShellPM");
+				var log:Logger = LogContext.getLogger(TestShell);
+				log.info("ApplicationID = {0}", NativeApplication.nativeApplication.applicationID);			
+				log.info("runtimeVersion = " + NativeApplication.nativeApplication.runtimeVersion);			
+				log.info("runtimePatchLevel = " + NativeApplication.nativeApplication.runtimePatchLevel);			
+			}
+			
+
 			
 		]]>
 	</fx:Script>
