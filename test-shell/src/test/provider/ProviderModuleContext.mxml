@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Object 
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns="http://www.spicefactory.org/parsley"
+	xmlns:provider="test.provider.*"
+	>
+		
+	<mx:Script>
+		<![CDATA[
+			import org.spicefactory.lib.reflect.ClassInfo;
+		]]>
+	</mx:Script>
+
+	<!-- Presentation -->
+	<provider:ProviderContainerPM />
+	
+</mx:Object>
+

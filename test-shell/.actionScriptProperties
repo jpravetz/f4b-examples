@@ -21,6 +21,8 @@
   <modules>
     <module application="src/TestShell.mxml" destPath="test/module3/Module3Module.swf" optimize="true" sourcePath="src/test/module3/Module3Module.mxml"/>
     <module application="src/TestShell.mxml" destPath="test/module1/Module1.swf" optimize="true" sourcePath="src/test/module1/Module1.mxml"/>
+    <module application="src/TestShell.mxml" destPath="test/inbox/InboxModule.swf" optimize="true" sourcePath="src/test/inbox/InboxModule.mxml"/>
+    <module application="src/TestShell.mxml" destPath="test/provider/ProviderModule.swf" optimize="true" sourcePath="src/test/provider/ProviderModule.mxml"/>
   </modules>
   <buildCSSFiles/>
 </actionScriptProperties>

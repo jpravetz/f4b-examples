@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
+		 creationComplete="init()"
+		 >
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.ModuleEvent;
+			
+			private function init():void {
+				providerModule.loadModule("test/provider/ProviderModule.swf");
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:ModuleLoader id="providerModule" width="100%" height="100%"  />
+	
+</mx:VBox>
