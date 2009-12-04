@@ -5,7 +5,7 @@
 		   layout="vertical" width="100%" height="100%"
 		   xmlns:inbox="test.inbox.*"
 		   verticalScrollPolicy="off" horizontalScrollPolicy="off"
-		   preinitialize="FlexContextBuilder.build(InboxModuleContext,this)"
+		   addedToStage="FlexContextBuilder.build(InboxModuleContext,this)"
 		   >
 	<fx:Script>
 		<![CDATA[
