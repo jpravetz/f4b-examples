@@ -13,6 +13,12 @@
 	<fx:Script>
 		<![CDATA[		
 			[Inject] [Bindable] public var model:Module3PanelPM;
+			[Inject] [Bindbale] public var persist:PrefsModule3Persist;
+			
+			[Init]
+			public function onInit():void {
+				persistText.text = persist.persistText;
+			}
 
 		]]>
 	</fx:Script>
@@ -27,6 +33,11 @@
 				change="model.textSend=messageText.text"/>
 	<s:HGroup width="100%" >
 		<s:Button click="model.sendMessage()" label="Send Message" />
+	</s:HGroup>
+	<s:Label text="Persistence Test String:" />
+	<s:TextInput id="persistText" width="100%"  />
+	<s:HGroup width="100%" >
+		<s:Button click="persist.persistText=persistText.text" label="Apply Persistence Test String" />
 	</s:HGroup>
 	
 </s:VGroup>

@@ -6,5 +6,6 @@
 	>
 	
 	<mod3:Module3PanelPM />
+	<mod3:PrefsModule3Persist name="Module3Persist" />
 	
 </mx:Object> 

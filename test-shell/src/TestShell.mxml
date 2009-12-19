@@ -6,10 +6,11 @@
 					   xmlns:shell="test.shell"
 					   minWidth="300" minHeight="400"
 					   width="450" height="700"
-					   preinitialize="initLogging();FlexContextBuilder.build(TestShellContext,this)"
+					   preinitialize="Logging.initLogging();FlexContextBuilder.build(TestShellContext,this)"
+					   initialize="Logging.logApplicationInformation()"
 					   creationComplete="creationCompleteHandler(event)"
 					   addedToStage="dispatchEvent(new Event('configureView', true));"
-					   xmlns:app="test.shell.*">
+					   xmlns:app="test.shell.*" viewSourceURL="srcview/index.html">
 	
 	<!-- Notes:
 		XXX: Not sure why this is dispatching a configureView event rather then an configureIOC event.
@@ -35,14 +36,15 @@
 			import mx.logging.Log;
 			import mx.logging.LogEventLevel;
 			import mx.logging.targets.TraceTarget;
-			import test.shell.ViewChangeEvent;
 			
 			import org.spicefactory.lib.logging.LogContext;
 			import org.spicefactory.lib.logging.Logger;
 			import org.spicefactory.parsley.core.context.Context;
 			import org.spicefactory.parsley.flex.FlexContextBuilder;
 			
+			import test.util.Logging;
 			import test.shell.Module3Window;
+			import test.shell.ViewChangeEvent;
 						
 			[Inject] public var context:Context;
 						
@@ -56,40 +58,7 @@
 				context.viewManager.addViewRoot(window);
 				window.open();
 			}
-			
-			/**
-			 * Initialize logging for the application. 
-			 * This needs to be done before everything else, else log messages won't be recorded.
-			 * Classes that wish to log messages should call:
-			 *	private static const log:Logger = LogContext.getLogger(MyClass);
-			 *	log.info("Number {0}, {1}", 1, 2 );
-			 * NOTE: Is this really the optimal way to set up logging, and on the correct event?.
-			 */
-			private function initLogging():void {
-				// Create target
-				var logTarget:TraceTarget = new TraceTarget();
-				
-				// Log all levels
-				logTarget.level = LogEventLevel.ALL;
-				
-				// Add date, time, category and log level to the output
-				logTarget.includeTime = true;
-				logTarget.includeLevel = true;
-				// logTarget.includeDate = true;
-				logTarget.includeCategory = true;
-				
-				// Begin logging
-				Log.addTarget(logTarget);
-				
-				//_log = Log.getLogger("CanmoreShellPM");
-				var log:Logger = LogContext.getLogger(TestShell);
-				log.info("ApplicationID = {0}", NativeApplication.nativeApplication.applicationID);			
-				log.info("runtimeVersion = " + NativeApplication.nativeApplication.runtimeVersion);			
-				log.info("runtimePatchLevel = " + NativeApplication.nativeApplication.runtimePatchLevel);			
-			}
-			
-
-			
+						
 		]]>
 	</fx:Script>
 	
