@@ -12,11 +12,16 @@
 	
 	<fx:Script>
 		<![CDATA[		
+			import org.spicefactory.lib.logging.LogContext;
+			import org.spicefactory.lib.logging.Logger;
 			[Inject] [Bindable] public var model:Module3PanelPM;
 			[Inject] [Bindbale] public var persist:PrefsModule3Persist;
-			
+
+			private static const _log:Logger = LogContext.getLogger(Module3Panel);
+
 			[Init]
 			public function onInit():void {
+				_log.debug( "Called: [Init]" );
 				persistText.text = persist.persistText;
 			}
 

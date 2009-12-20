@@ -20,6 +20,9 @@
 	<fx:Script>
 		<![CDATA[
 			import org.spicefactory.parsley.flex.FlexContextBuilder;
+			import test.module3.PrefsModule3Persist;
+			
+			private var tmpVar:PrefsModule3Persist = new PrefsModule3Persist();
 		]]>
 	</fx:Script>
 	

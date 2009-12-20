@@ -1,9 +1,11 @@
 package test.module3
 {
-	import test.util.PrefsSharedObject;
+	import flash.utils.describeType;
 	
 	import org.spicefactory.lib.logging.LogContext;
 	import org.spicefactory.lib.logging.Logger;
+	
+	import test.util.PrefsSharedObject;
 	
 	/**
 	 * Object used to persist settings that are specific to this module
@@ -20,13 +22,16 @@ package test.module3
 		private static const _log:Logger = LogContext.getLogger(PrefsModule3Persist);
 		
 		public function PrefsModule3Persist() {
+			_log.debug( "Called: constructor" );
+			var xml:XML = flash.utils.describeType(this);
+			_log.debug( xml.toString() );
 			super();
 		}
 		
 		[Init]
 		public function init():void {
+			_log.debug( "Called: [Init]" );
 			load(name);
-			_log.debug( "init called load({0})", name );
 		}
 		
 		public function set persistText(value:String):void {
@@ -34,9 +39,8 @@ package test.module3
 		}
 		
 		public function get persistText():String {
-			var value:String = getStringProperty("persistText","Default Value");
-			_log.debug( "get lastTabIndex = {0}", value );
-			return value;
+			_log.debug( "Called: get persistText()" );
+			return getStringProperty("persistText","Default Value");
 		}
 		
 	}

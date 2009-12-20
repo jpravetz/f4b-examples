@@ -19,6 +19,9 @@ package test.util
 	import flash.geom.Rectangle;
 	import flash.net.SharedObject;
 	
+	import org.spicefactory.lib.logging.LogContext;
+	import org.spicefactory.lib.logging.Logger;
+	
 	/**
 	 * Superclass used to store preferences in a SharedObject.
 	 * Plays nice with IOC frameworks if used correctly.
@@ -27,6 +30,8 @@ package test.util
 	public class PrefsSharedObject
 	{
 		private var _so:SharedObject;
+		
+		private static const _log:Logger = LogContext.getLogger(PrefsSharedObject);
 		
 		/**
 		 * The subclass should either call load() directly from its constructor,
@@ -42,6 +47,7 @@ package test.util
 		 */
 		public function load(name:String):void {
 			_so = SharedObject.getLocal(name);
+			_log.debug( "Result for '_so = SharedObject.getLocal({0})' is _so = {1}", name, (_so==null) ? "null" : "non null" );
 		}
 		
 		protected function setUIntProperty(key:String,value:uint):void {
@@ -81,6 +87,11 @@ package test.util
 		}
 		
 		protected function getStringProperty(key:String,defaultValue:String=null):String {
+			if( _so.data.hasOwnProperty(key) ) {
+				_log.debug( "Result for '_so.data[{0}]' = '{1}'", key, _so.data[key] );
+			} else {
+				_log.debug( "Result for '_so.data[{0}]' = {1}", key, "<Not Set>" );
+			}
 			return _so.data.hasOwnProperty(key) ? (_so.data[key] as String) : defaultValue;
 		}
 		
@@ -92,7 +103,7 @@ package test.util
 			return _so.data.hasOwnProperty(key) ? (_so.data[key]) : defaultValue;
 		}
 		
-
+		
 		
 		public function write():void {
 			_so.flush();
